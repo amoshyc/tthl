@@ -78,7 +78,11 @@ def generator(n_use, batch_size):
             y_batch[idx] = label_uses[i]
 
             if idx == batch_size - 1:
-                x_batch /= 255
+                std = image.ImageDataGenerator(
+                    featurewise_center=True,
+                    featurewise_std_normalization=True)
+                std.fit(x_batch)
+                x_batch = std.standardize(x_batch)
                 yield (x_batch, y_batch)
 
 
