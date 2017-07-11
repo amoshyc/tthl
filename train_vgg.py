@@ -48,8 +48,8 @@ def get_model():
 
 
 def generator(n_use, batch_size):
-    img_paths = sorted(
-        list(pathlib.Path('/home/amoshyc/Videos/frames/').iterdir()))
+    frames = Path('~/dataset/video00/frames/').expanduser().iterdir()
+    img_paths = sorted(frames)
 
     x_batch = np.zeros((batch_size, 224, 224, 3), dtype=np.float32)
     y_batch = np.zeros((batch_size, 1), dtype=np.uint8)
@@ -72,6 +72,8 @@ def generator(n_use, batch_size):
 def main():
     with tf.device('/gpu:3'):
         model = get_model()
+
+    # model = get_model()
 
     sgd = SGD(lr=0.001, decay=1e-5, momentum=0.9, nesterov=True)
     model.compile(loss='binary_crossentropy', optimizer=sgd)
