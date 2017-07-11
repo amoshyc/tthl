@@ -90,7 +90,7 @@ def main():
         'epochs': 30,
         'callbacks': [
             # MyLogger(loss_path='./vgg_loss.json'),
-            ModelCheckpoint(filepath="./vgg_epoch{epoch:02d}_{train_loss:.3f}.h5")
+            ModelCheckpoint(filepath="./vgg_epoch{epoch:02d}_{loss:.3f}.h5")
         ]
     } # yapf: disable
 
