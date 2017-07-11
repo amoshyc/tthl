@@ -15,17 +15,17 @@ from moviepy.editor import VideoFileClip, concatenate_videoclips  # requires ffm
 #     ...
 
 
-def process(video_dir, gen_frames=True, gen_highlight=True, gen_labels=True):
+def process(video_dir, gen_frames=True, gen_highlight=True, gen_label=True):
     """Generating frames, highlights and labels of the video.
     Frames is written as `video_dir/%08d.jpg`
     Highlight is generated as `highlight.mp4`
-    Labels is written back to `info.json`
+    Label is written back to `info.json`
     
     Arguments:
     video_dir:  A pathlib.Path object pointing to the folder of the target video. 
                 The directory should contain `video.mp4` and `info.json`.
-    gen_frames, gen_highlight,  gen_labels: 
-                Controls whether to generate frames, highlight, labels repectively.
+    gen_frames, gen_highlight,  gen_label: 
+                Controls whether to generate frames, highlight, label repectively.
                 Default to True
     """
 
@@ -49,7 +49,7 @@ def process(video_dir, gen_frames=True, gen_highlight=True, gen_labels=True):
         hl = concatenate_videoclips(clips)
         hl.write_videofile(str(hl_path), threads=3)
 
-    if gen_labels:
+    if gen_label:
         print('Generating label...', end='')
         n_frames = round(video.duration * video.fps)
         info['label'] = [0 for _ in range(n_frames)]
