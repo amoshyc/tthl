@@ -5,10 +5,10 @@ import numpy as np
 import pandas as pd
 
 import tensorflow as tf
-# from keras.backend.tensorflow_backend import set_session
-# config = tf.ConfigProto()
-# config.gpu_options.allow_growth = True
-# set_session(tf.Session(config=config))
+from keras.backend.tensorflow_backend import set_session
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+set_session(tf.Session(config=config))
 
 from keras.models import Sequential, Model
 from keras.preprocessing import image
