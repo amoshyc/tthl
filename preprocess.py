@@ -53,6 +53,7 @@ def process(video_dir, gen_frames=True, gen_highlight=True, gen_label=True):
         n_frames = round(video.duration * video.fps)
         info['label'] = [0 for _ in range(n_frames)]
         for s, e in zip(info['starts'], info['ends']):
+            print(s, e)
             fs = round(s * video.fps)
             fe = round(e * video.fps)
             for i in range(fs, fe + 1):
