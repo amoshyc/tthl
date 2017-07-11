@@ -68,7 +68,7 @@ def main():
     for i, video_dir in enumerate(video_dirs):
         print(video_dir, '({}/{})'.format(i + 1, len(video_dirs)))
         print()
-        process(video_dir)
+        process(video_dir, gen_frames=False)
         print('*' * 50)
 
 
