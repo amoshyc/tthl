@@ -49,6 +49,8 @@ def get_model():
     x = vgg.output
     x = Dense(32, activation='relu')(x)
     x = Dropout(0.5)(x)
+    x = Dense(8, activation='relu')(x)
+    x = Dropout(0.5)(x)
     x = Dense(1, activation='softmax')(x)
 
     return Model(inputs=vgg.input, outputs=x)
