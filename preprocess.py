@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 from random import randint
-from moviepy import VideoFileClip # requires ffmpeg
+from moviepy.editor import VideoFileClip # requires ffmpeg
 
 # dataset/
 #     readme.rst
@@ -31,7 +31,7 @@ def process(video_dir):
     info_path = video_dir / 'info.json'
 
     video = VideoFileClip(str(video_path))
-    info = json.load(info_ath).open())
+    info = json.load(info_path.open())
 
     print('Generating frames:')
     video.write_images_sequence(frame_fmt)
