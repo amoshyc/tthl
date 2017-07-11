@@ -36,13 +36,11 @@ class MyLogger(Callback):
 
 
 def get_model():
-    vgg = VGG16(weights='imagenet', include_top=False, pooling='max')
-    x = vgg.output
-    x = Dense(32, activation='relu')(x)
-    x = Dropout(0.5)(x)
-    x = Dense(1, activation='softmax')(x)
+    img = Input(shape=(224, 224, 3))
 
-    return Model(inputs=vgg.input, outputs=x)
+    
+
+    return Model(inputs=img, outputs=x)
 
 
 def generator(n_use, batch_size):
