@@ -4,11 +4,11 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-import tensorflow as tf
-from keras.backend.tensorflow_backend import set_session
-config = tf.ConfigProto()
-config.gpu_options.allow_growth = True
-set_session(tf.Session(config=config))
+# import tensorflow as tf
+# from keras.backend.tensorflow_backend import set_session
+# config = tf.ConfigProto()
+# config.gpu_options.allow_growth = True
+# set_session(tf.Session(config=config))
 
 from keras.models import Sequential, Model
 from keras.preprocessing import image
@@ -81,7 +81,7 @@ def main():
     # model = get_model()
 
     sgd = SGD(lr=0.001, decay=1e-5, momentum=0.9, nesterov=True)
-    model.compile(loss='binary_crossentropy', optimizer=sgd)
+    model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['acc'])
     model.summary()
 
     n_use = 27000
