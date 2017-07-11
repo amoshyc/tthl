@@ -14,7 +14,7 @@ from keras.models import Sequential, Model
 from keras.preprocessing import image
 from keras.layers import *
 from keras.layers.normalization import BatchNormalization
-from keras.optimizers import SGD
+from keras.optimizers import *
 from keras.callbacks import Callback, ModelCheckpoint
 from keras.applications.vgg16 import VGG16
 
