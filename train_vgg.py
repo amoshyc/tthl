@@ -80,7 +80,7 @@ def main():
 
     # model = get_model()
 
-    sgd = SGD(lr=0.001, decay=1e-5, momentum=0.9, nesterov=True)
+    sgd = SGD(lr=0.01, decay=1e-5, momentum=0.9, nesterov=True)
     model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['acc'])
     model.summary()
 
