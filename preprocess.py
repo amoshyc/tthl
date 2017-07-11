@@ -44,7 +44,11 @@ def process(video_dir, gen_frames=True, gen_highlight=True, gen_label=True):
 
     if gen_highlight:
         print('Generating highlight')
-        clips = [video.subclip(s, e) for s, e in zip(info['starts'], info['ends'])]
+        # clips = [video.subclip(s, e) for s, e in zip(info['starts'], info['ends'])]
+        clips = []
+        for s, e in zip(info['starts'], info['ends']):
+            print(s, e)
+            clips.append(video.subclip(s, e))
         hl = concatenate_videoclips(clips)
         hl.write_videofile(str(hl_path), threads=3)
 
@@ -53,7 +57,6 @@ def process(video_dir, gen_frames=True, gen_highlight=True, gen_label=True):
         n_frames = round(video.duration * video.fps)
         info['label'] = [0 for _ in range(n_frames)]
         for s, e in zip(info['starts'], info['ends']):
-            print(s, e)
             fs = round(s * video.fps)
             fe = round(e * video.fps)
             for i in range(fs, fe + 1):
