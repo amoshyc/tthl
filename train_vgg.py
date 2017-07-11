@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-# import tensorflow as tf
+import tensorflow as tf
 # from keras.backend.tensorflow_backend import set_session
 # config = tf.ConfigProto()
 # config.gpu_options.allow_growth = True
