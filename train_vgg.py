@@ -79,20 +79,20 @@ def main():
     model.compile(loss='binary_crossentropy', optimizer=sgd)
     model.summary()
 
-    # n_use = 27000
-    # batch_size = 40
+    n_use = 27000
+    batch_size = 40
 
-    # arg = {
-    #     'generator': train_gen,
-    #     'steps_per_epoch': n_use // batch_size,
-    #     'epochs': 30,
-    #     'callbacks': [
-    #         # MyLogger(loss_path='./vgg_loss.json'),
-    #         ModelCheckpoint(filepath="./vgg_epoch{epoch:02d}_{train_loss:.3f}.h5")
-    #     ]
-    # } # yapf: disable
+    arg = {
+        'generator': train_gen,
+        'steps_per_epoch': n_use // batch_size,
+        'epochs': 30,
+        'callbacks': [
+            # MyLogger(loss_path='./vgg_loss.json'),
+            ModelCheckpoint(filepath="./vgg_epoch{epoch:02d}_{train_loss:.3f}.h5")
+        ]
+    } # yapf: disable
 
-    # model.fit_generator(**arg)
+    model.fit_generator(**arg)
 
 if __name__ == '__main__':
     main()
