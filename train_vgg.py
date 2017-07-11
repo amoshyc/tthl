@@ -83,7 +83,7 @@ def main():
     batch_size = 40
 
     arg = {
-        'generator': train_gen,
+        'generator': generator(n_use, batch_size),
         'steps_per_epoch': n_use // batch_size,
         'epochs': 30,
         'callbacks': [
@@ -93,6 +93,7 @@ def main():
     } # yapf: disable
 
     model.fit_generator(**arg)
+
 
 if __name__ == '__main__':
     main()
