@@ -81,7 +81,7 @@ def main():
     model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['acc'])
     model.summary()
 
-    n_use = 27000
+    n_use = 10000
     batch_size = 40
 
     arg = {
