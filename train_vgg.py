@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import numpy as np
@@ -48,15 +49,19 @@ def get_model():
 
 
 def generator(n_use, batch_size):
-    frames = Path('~/dataset/video00/frames/').expanduser().iterdir()
-    img_paths = sorted(frames)
+    video_dir = Path('~/dataset/video00').expanduser()
+    frame_dir = video_dir / 'frames/'
+    info_path = video_dir / 'info.json'
+
+    img_paths = sorted(frame_dir.iterdir())
+    info = json.load(info_path.open())
 
     x_batch = np.zeros((batch_size, 224, 224, 3), dtype=np.float32)
     y_batch = np.zeros((batch_size, 1), dtype=np.uint8)
 
     indices = np.random.permutation(len(img_paths))[:n_use]
     img_uses = [img_paths[i] for i in indices]
-    label_uses = [labels[i] for i in indices]
+    label_uses = [info['label'][i] for i in indices]
 
     while True:
         for i, img_path in enumerate(img_uses):
