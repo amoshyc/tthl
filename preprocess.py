@@ -33,11 +33,11 @@ def process(video_dir):
     video = VideoFileClip(str(video_path))
     info = json.load(info_path.open())
 
-    print('Generating frames:')
+    print('Generating frames')
     video.write_images_sequence(frame_fmt)
 
-    print('Generating label:')
-    n_frames = round(vidoe.length * video.fps)
+    print('Generating label')
+    n_frames = round(video.duration * video.fps)
     info['label'] = [0 for _ in range(n_frames)]
     for s, e in zip(info['starts'], info['ends']):
         fs = round(s * video.fps)
