@@ -33,7 +33,7 @@ class MyLogger(Callback):
 
     def on_epoch_end(self, epoch, logs):
         self.train_loss.append(logs.get('loss'))
-        self.val_loss.append(logs.get('acc'))
+        self.train_acc.append(logs.get('acc'))
 
         df_loss = pd.DataFrame()
         df_loss['train_loss'] = self.train_loss
