@@ -47,9 +47,10 @@ class MyLogger(Callback):
 
 def get_model():
     model = Sequential()
-    model.add(Conv2D(4, 5, 5, activation='relu', input_shape=(224, 224, 3)))
-    model.add(Conv2D(8, 3, 3, activation='relu'))
-    model.add(Conv2D(16, 3, 1, activation='relu'))
+    model.add(Conv2D(4, kernel_size=5, strides=5, activation='relu', input_shape=(224, 224, 3)))
+    model.add(Conv2D(8, kernel_size=5, strides=3, activation='relu'))
+    model.add(Conv2D(12, kernel_size=3, strides=1, activation='relu'))
+    model.add(MaxPooling(pool_size=3))
     model.add(Flatten())
     model.add(Dense(30))
     model.add(Dropout(0.3))
