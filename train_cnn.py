@@ -17,7 +17,6 @@ from keras.layers import *
 from keras.layers.normalization import BatchNormalization
 from keras.optimizers import *
 from keras.callbacks import Callback, ModelCheckpoint, CSVLogger
-from keras.applications.vgg16 import VGG16
 
 
 def get_model():

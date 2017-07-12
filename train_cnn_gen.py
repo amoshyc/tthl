@@ -17,12 +17,11 @@ from keras.layers import *
 from keras.layers.normalization import BatchNormalization
 from keras.optimizers import *
 from keras.callbacks import Callback, ModelCheckpoint, CSVLogger
-from keras.applications.vgg16 import VGG16
 
 
 def get_model():
     model = Sequential()
-    model.add(BatchNormalization(input_shape(224, 224, 3)))
+    model.add(BatchNormalization(input_shape=(224, 224, 3)))
     model.add(Conv2D(4, kernel_size=5, strides=3, activation='relu'))
     model.add(Conv2D(8, kernel_size=5, strides=2, activation='relu'))
     model.add(Conv2D(12, kernel_size=3, strides=1, activation='relu'))
