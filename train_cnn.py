@@ -78,8 +78,8 @@ def main():
         'validation_data': (x_val, y_val),
         'shuffle': True,
         'callbacks': [
-            MyLogger(prefix='vgg'),
-            ModelCheckpoint(filepath="./vgg_epoch{epoch:02d}_{loss:.3f}.h5")
+            MyLogger(prefix='cnn'),
+            ModelCheckpoint(filepath="./cnn_epoch{epoch:02d}_{loss:.3f}.h5")
         ]
     } # yapf: disable
 
