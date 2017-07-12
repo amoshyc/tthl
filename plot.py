@@ -12,7 +12,7 @@ ax.set_xlabel('epoch')
 ax.set_ylabel('loss(cross entropy)')
 plt.savefig('loss.png')
 
-ax = df.plot(kind=line, x='train_binary_accuracy', y='val_binary_accuracy')
+ax = df.plot(kind='line', x='train_binary_accuracy', y='val_binary_accuracy')
 ax.set_xlabel('epoch')
 ax.set_ylabel('loss(cross entropy)')
 plt.savefig('acc.png')
