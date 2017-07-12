@@ -62,7 +62,7 @@ def main():
         model = get_model()
 
     opt = RMSprop()
-    model.compile(loss='binary_crossentropy', optimizer=opt, metrics=['binary_accuracy'])
+    model.compile(loss='binary_crossentropy', optimizer='sgd', metrics=['binary_accuracy'])
     model.summary()
 
     x_train = np.load('x_train_std.npy')
