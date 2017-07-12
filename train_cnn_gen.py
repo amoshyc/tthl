@@ -77,8 +77,8 @@ def main():
     model.summary()
 
     n_samples = 27000
-    n_train = 27000 // 5 * 4
-    n_val = 27000 // 5
+    n_train = n_samples * 4 // 5
+    n_val = n_samples // 5
     batch_size = 40
     train_gen, val_gen = get_data(n_samples, batch_size)
 
