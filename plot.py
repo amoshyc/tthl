@@ -11,7 +11,7 @@ df = pd.read_csv(argv[1])
 keys = ['loss', 'val_loss']
 ax = df[keys].plot(kind='line')
 ax.set_xlabel('epoch')
-ax.set_ylabel('loss(cross entropy)')
+ax.set_ylabel('loss(binary crossentropy)')
 plt.savefig('loss.png')
 
 keys = ['binary_accuracy', 'val_binary_accuracy']
