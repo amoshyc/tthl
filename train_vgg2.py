@@ -72,7 +72,7 @@ def get_data(n_use):
     x = np.zeros((n_use, 224, 224, 3), dtype=np.float32)
     y = np.array(label_uses, dtype=np.uint8)
     for i, path in enumerate(img_uses):
-        pil = image.load_img(img_path, target_size=(224, 224))
+        pil = image.load_img(path, target_size=(224, 224))
         x[i] = image.img_to_array(pil)
     x /= 255.0
 
