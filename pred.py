@@ -8,7 +8,7 @@ model = load_model(argv[1])
 x_val = np.load('x_val_std.npy')[:10]
 y_val = np.load('y_val.npy')[:10]
 
-y_pred = model.predict(x_val, y_val, batch_size=10)
+y_pred = model.predict(x_val)
 pprint(y_pred)
 print('*' * 50)
 pprint(y_val)
