@@ -57,31 +57,6 @@ def get_model():
     return Model(inputs=vgg.input, outputs=x)
 
 
-def get_data(n_use):
-    print('Loading data')
-    
-    video_dir = Path('~/dataset/video00').expanduser()
-    frame_dir = video_dir / 'frames/'
-    info_path = video_dir / 'info.json'
-
-    img_paths = sorted(frame_dir.iterdir())
-    info = json.load(info_path.open())
-
-    # indices = np.random.permutation(len(img_paths))[:n_use]
-    indices = range(n_use)
-    img_uses = [img_paths[i] for i in indices]
-    label_uses = [info['label'][i] for i in indices]
-
-    x = np.zeros((n_use, 224, 224, 3), dtype=np.float32)
-    y = np.array(label_uses, dtype=np.uint8)
-    for i, path in enumerate(tqdm(img_uses)):
-        pil = image.load_img(path, target_size=(224, 224))
-        x[i] = image.img_to_array(pil)
-    x /= 255.0
-
-    return x, y
-
-
 def main():
     with tf.device('/gpu:3'):
         model = get_model()
@@ -90,14 +65,17 @@ def main():
     model.compile(loss='mse', optimizer=opt, metrics=['acc'])
     model.summary()
 
-    x, y = get_data(10000)
+    x_train = np.load('x_train_std.npy')
+    y_train = np.load('y_train.npy')
+    x_val = np.load('x_val_std.npy')
+    y_val = np.load('y_val.npy')
 
     arg = {
-        'x': x,
-        'y': y,
+        'x': x_train,
+        'y': y_train,
         'batch_size': 40,
         'epochs': 30,
-        'validation_split': 0.2,
+        'validation_data': (x_val, y_val)
         'shuffle': True,
         'callbacks': [
             MyLogger(prefix='vgg'),
