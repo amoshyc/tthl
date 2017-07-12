@@ -53,7 +53,7 @@ def main():
         'shuffle': True,
         'callbacks': [
             CSVLogger('cnn.log'),
-            ModelCheckpoint(filepath="./cnn_epoch{epoch:02d}_{loss:.3f}.h5")
+            ModelCheckpoint(filepath="./cnn_epoch{epoch:02d}_{val_binary_accuracy:.3f}.h5")
         ]
     } # yapf: disable
 
