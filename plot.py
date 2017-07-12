@@ -1,17 +1,18 @@
+from sys import argv
 import matplotlib as mpl
-mpl.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn
 import pandas as pd
+mpl.use('Agg')
 
-df_loss = pd.read_json('./cnn_loss.json', orient='split')
-ax = df_loss.plot(kind='line')
+df = pd.read_csv(argv[1])
+
+ax = df.plot(kind=line, x='loss', y='val_loss')
 ax.set_xlabel('epoch')
 ax.set_ylabel('loss(cross entropy)')
 plt.savefig('loss.png')
 
-df_acc = pd.read_json('./cnn_acc.json', orient='split')
-ax = df_acc.plot(kind='line')
+ax = df.plot(kind=line, x='train_binary_accuracy', y='val_binary_accuracy')
 ax.set_xlabel('epoch')
-ax.set_ylabel('accuracy')
-plt.savefig('acc.png')
+ax.set_ylabel('loss(cross entropy)')
+plt.savefig('loss.png')

@@ -87,7 +87,7 @@ def main():
         'steps_per_epoch': n_train // batch_size,
         'epochs': 30,
         'validation_data': val_gen, 
-        'validation_steps': n_val,
+        'validation_steps': n_val // batch_size,
         'callbacks': [
             CSVLogger('cnn.log'),
             ModelCheckpoint(filepath="./cnn_epoch{epoch:02d}_{val_binary_accuracy:.3f}.h5")
