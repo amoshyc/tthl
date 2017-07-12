@@ -2,7 +2,6 @@ from pprint import pprint
 from pathlib import Path
 from sys import argv
 from keras.models import load_model
-from generator import generator
 
 model = load_model(argv[1])
 x_val = np.load('x_val_std.npy')[:10]
