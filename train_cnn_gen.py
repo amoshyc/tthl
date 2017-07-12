@@ -22,7 +22,8 @@ from keras.applications.vgg16 import VGG16
 
 def get_model():
     model = Sequential()
-    model.add(Conv2D(4, kernel_size=5, strides=3, activation='relu', input_shape=(224, 224, 3)))
+    model.add(BatchNormalization(input_shape(224, 224, 3)))
+    model.add(Conv2D(4, kernel_size=5, strides=3, activation='relu'))
     model.add(Conv2D(8, kernel_size=5, strides=2, activation='relu'))
     model.add(Conv2D(12, kernel_size=3, strides=1, activation='relu'))
     model.add(MaxPooling2D(pool_size=3))
@@ -32,7 +33,7 @@ def get_model():
     model.add(Dense(1, activation='sigmoid'))
     return model
 
-def generator(xs, ys, batch_size, x_mean, x_std):
+def generator(xs, ys, batch_size):
     x_batch = np.zeros((batch_size, 224, 224, 3), dtype=np.float32)
     y_batch = np.zeros((batch_size, 1), dtype=np.uint8)
 
@@ -41,7 +42,7 @@ def generator(xs, ys, batch_size, x_mean, x_std):
             idx = i % batch_size
             pil = image.load_img(img_path, target_size=(224, 224))
             img = image.img_to_array(pil)
-            x_batch[idx] = (img - mean) / std
+            x_batch[idx] = img
             y_batch[idx] = ys[i]
 
             if idx == batch_size - 1:
@@ -64,10 +65,8 @@ def get_data(n_samples, batch_size):
     x_train, x_val = x_use[:pivot], x_use[pivot:]
     y_train, y_val = y_use[:pivot], y_use[pivot:]
 
-    x_mean = np.load('mean.npy')
-    x_std = np.load('std.npy')
-    train_gen = generator(x_train, y_train, batch_size, x_mean, x_std)
-    val_gen = generator(x_val, y_val, batch_size, x_mean, x_std)
+    train_gen = generator(x_train, y_train, batch_size)
+    val_gen = generator(x_val, y_val, batch_size)
 
     return (train_gen, val_gen)
 
