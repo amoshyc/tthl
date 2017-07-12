@@ -67,7 +67,8 @@ def generator(n_use, batch_size):
     x_batch = np.zeros((batch_size, 224, 224, 3), dtype=np.float32)
     y_batch = np.zeros((batch_size, 1), dtype=np.uint8)
 
-    indices = np.random.permutation(len(img_paths))[:n_use]
+    # indices = np.random.permutation(len(img_paths))[:n_use]
+    indices = range(n_use)
     img_uses = [img_paths[i] for i in indices]
     label_uses = [info['label'][i] for i in indices]
 
