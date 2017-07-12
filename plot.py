@@ -7,7 +7,7 @@ mpl.use('Agg')
 
 df = pd.read_csv(argv[1])
 
-ax = df.plot(kind=line, x='loss', y='val_loss')
+ax = df.plot(kind='line', x='loss', y='val_loss')
 ax.set_xlabel('epoch')
 ax.set_ylabel('loss(cross entropy)')
 plt.savefig('loss.png')
