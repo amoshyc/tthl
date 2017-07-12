@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 import numpy as np
-from tqdm import tqdm
 from keras.preprocessing import image
 
 
@@ -21,7 +20,7 @@ def gen_npy(n_use):
     print('Loading...')
     x = np.zeros((n_use, 224, 224, 3), dtype=float)
     y = np.array(label_uses, dtype=int)
-    for i, path in enumerate(tqdm(img_uses)):
+    for i, path in enumerate(img_uses):
         pil = image.load_img(path, target_size=(224, 224))
         x[i] = image.img_to_array(pil)
 
