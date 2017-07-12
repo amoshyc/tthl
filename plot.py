@@ -1,9 +1,9 @@
 from sys import argv
 import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn
 import pandas as pd
-mpl.use('Agg')
 
 df = pd.read_csv(argv[1])
 
