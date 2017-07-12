@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 import numpy as np
-from keras.preprocessing import image
+from keras.preprocessing import image, to_categorical
 
 
 def gen_npy(n_use):

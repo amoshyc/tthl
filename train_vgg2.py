@@ -46,15 +46,14 @@ class MyLogger(Callback):
 
 
 def get_model():
-    vgg = VGG16(weights='imagenet', include_top=False, pooling='max')
-    x = vgg.output
-    x = Dense(32, activation='relu')(x)
-    x = Dropout(0.5)(x)
-    x = Dense(8, activation='relu')(x)
-    x = Dropout(0.5)(x)
-    x = Dense(1, activation='softmax')(x)
-
-    return Model(inputs=vgg.input, outputs=x)
+    model = Sequential()
+    model.add(Conv2D(8, kernel_size=(5, 5), activation='relu', input_shape=(28, 28, 1)))
+    model.add(Conv2D(16, kernel_size=(3, 3), activation='relu'))
+    model.add(MaxPooling2D(pool_size=(3, 3)))
+    model.add(Flatten())
+    model.add(Dense(50))
+    model.add(Dropout(0.3))
+    model.add(Dense(2, activation='softmax'))
 
 
 def main():
