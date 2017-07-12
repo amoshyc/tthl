@@ -75,7 +75,7 @@ def main():
         'y': y_train,
         'batch_size': 40,
         'epochs': 30,
-        'validation_data': (x_val, y_val)
+        'validation_data': (x_val, y_val),
         'shuffle': True,
         'callbacks': [
             MyLogger(prefix='vgg'),
