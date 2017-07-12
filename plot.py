@@ -1,18 +1,21 @@
 from sys import argv
 import matplotlib as mpl
 mpl.use('Agg')
+import seaborn as sns
+sns.set_style("darkgrid")
 import matplotlib.pyplot as plt
-import seaborn
 import pandas as pd
 
 df = pd.read_csv(argv[1])
 
-ax = df.plot(kind='line', x='loss', y='val_loss')
+keys = ['loss', 'val_loss']
+ax = df[keys].plot(kind='line')
 ax.set_xlabel('epoch')
 ax.set_ylabel('loss(cross entropy)')
 plt.savefig('loss.png')
 
-ax = df.plot(kind='line', x='binary_accuracy', y='val_binary_accuracy')
+keys = ['binary_accuracy', 'val_binary_accuracy']
+ax = df[keys].plot(kind='line')
 ax.set_xlabel('epoch')
 ax.set_ylabel('loss(cross entropy)')
 plt.savefig('acc.png')
