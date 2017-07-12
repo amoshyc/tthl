@@ -3,6 +3,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
 
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
@@ -57,6 +58,8 @@ def get_model():
 
 
 def get_data(n_use):
+    print('Loading data')
+    
     video_dir = Path('~/dataset/video00').expanduser()
     frame_dir = video_dir / 'frames/'
     info_path = video_dir / 'info.json'
@@ -71,7 +74,7 @@ def get_data(n_use):
 
     x = np.zeros((n_use, 224, 224, 3), dtype=np.float32)
     y = np.array(label_uses, dtype=np.uint8)
-    for i, path in enumerate(img_uses):
+    for i, path in enumerate(tqdm(img_uses)):
         pil = image.load_img(path, target_size=(224, 224))
         x[i] = image.img_to_array(pil)
     x /= 255.0
