@@ -46,4 +46,4 @@ def gen_npy(n_use):
 
 
 if __name__ == '__main__':
-    gen_npy()
+    gen_npy(100)
