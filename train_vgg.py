@@ -22,7 +22,7 @@ from keras.applications.vgg16 import VGG16
 class MyLogger(Callback):
     def __init__(self, prefix=None):
         self.train_loss = []
-        self.val_loss = []
+        self.train_acc = []
         self.loss_path = Path('{}_loss.json'.format(prefix))
         self.acc_path = Path('{}_acc.json'.format(prefix))
 
