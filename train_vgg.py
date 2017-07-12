@@ -77,12 +77,8 @@ def generator(n_use, batch_size):
             x_batch[idx] = image.load_img(img_path, target_size=(224, 224))
             y_batch[idx] = label_uses[i]
 
-            if idx == batch_size - 1:
-                std = image.ImageDataGenerator(
-                    featurewise_center=True,
-                    featurewise_std_normalization=True)
-                std.fit(x_batch)
-                x_batch = std.standardize(x_batch)
+            if idx + 1 == batch_size:
+                x_batch /= 255
                 yield (x_batch, y_batch)
 
 
@@ -93,7 +89,7 @@ def main():
     # model = get_model()
 
     opt = RMSprop()
-    model.compile(loss='binary_crossentropy', optimizer=opt, metrics=['acc'])
+    model.compile(loss='mse', optimizer=opt, metrics=['acc'])
     model.summary()
 
     n_use = 27000
