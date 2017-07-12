@@ -32,15 +32,16 @@ def get_model():
     model.add(Dense(1, activation='sigmoid'))
     return model
 
-def generator(img_paths, labels, batch_size):
+def generator(xs, ys, batch_size):
     x_batch = np.zeros((batch_size, 224, 224, 3), dtype=np.float32)
     y_batch = np.zeros((batch_size, 1), dtype=np.uint8)
 
     while True:
-        for i, img_path in enumerate(img_uses):
+        for i, img_path in enumerate(xs):
             idx = i % batch_size
-            x_batch[idx] = image.load_img(img_path, target_size=(224, 224))
-            y_batch[idx] = label_uses[i]
+            pil = image.load_img(img_path, target_size=(224, 224))
+            x_batch[idx] = image.img_to_array(pil)
+            y_batch[idx] = ys[i]
 
             if idx == batch_size - 1:
                 x_batch /= 255
