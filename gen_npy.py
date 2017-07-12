@@ -37,12 +37,10 @@ def gen_npy(n_use):
     x_val_std = std.standardize(x_val)
 
     print('Saving...')
-    np.save('x_train.npy', x_train)
-    np.save('y_train.npy', y_train)
-    np.save('x_val.npy', x_val)
-    np.save('y_val.npy', y_val)
     np.save('x_train_std.npy', x_train_std)
+    np.save('y_train.npy', y_train)
     np.save('x_val_std.npy', x_val_std)
+    np.save('y_val.npy', y_val)
 
 
 if __name__ == '__main__':
