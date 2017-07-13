@@ -48,12 +48,12 @@ def main():
     model.summary()
 
     n_train = 27000
-    n_val = 1000
+    n_val = 2000
     batch_size = 40
 
     dataset = Path('~/dataset/').expanduser().resolve()
-    train_dirs = [(dataset / 'video00/')]
-    val_dirs = [(dataset / 'video01')]
+    train_dirs = [(dataset / 'video01/')]
+    val_dirs = [(dataset / 'video00')]
     train_gen = gen_img_label(train_dirs, n_train, batch_size)
     val_gen = gen_img_label(val_dirs, n_val, batch_size)
 
