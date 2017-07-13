@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+from data import gen_img_label
+
 import numpy as np
 import pandas as pd
 
@@ -16,7 +18,6 @@ from keras.layers import *
 from keras.layers.normalization import BatchNormalization
 from keras.optimizers import *
 from keras.callbacks import Callback, ModelCheckpoint, CSVLogger
-from ..data import gen_img_label
 
 
 def get_model():
@@ -34,8 +35,9 @@ def get_model():
 
 
 def main():
-    with tf.device('/gpu:3'):
-        model = get_model()
+    # with tf.device('/gpu:3'):
+        # model = get_model()
+    model = get_model()
 
     model_arg = {
         'loss': 'binary_crossentropy',
