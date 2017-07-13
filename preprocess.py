@@ -63,7 +63,7 @@ def process(video_dir, gen_frames=True, gen_highlight=True, gen_label=True):
 
 
 def main():
-    dataset_dir = Path('~/dataset').expanduser().absolute()
+    dataset_dir = Path('~/dataset').expanduser().resolve()
     video_dirs = [x for x in dataset_dir.iterdir() if x.is_dir()]
     for i, video_dir in enumerate(video_dirs):
         print(video_dir, '({}/{})'.format(i + 1, len(video_dirs)))
@@ -73,4 +73,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    video_dir = Path('~/dataset/video01').expanduser().resolve()
+    process(video_dir, gen_frames=True, gen_highlight=False, gen_label=True)
