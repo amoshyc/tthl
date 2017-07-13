@@ -47,8 +47,8 @@ def main():
     model.compile(**model_arg)
     model.summary()
 
-    n_train = 27000
-    n_val = 2000
+    n_train = 25000
+    n_val = 5000
     batch_size = 40
 
     dataset = Path('~/dataset/').expanduser().resolve()
