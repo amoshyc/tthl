@@ -5,10 +5,10 @@ import numpy as np
 from keras.models import load_model
 
 model = load_model(argv[1])
-x_val = np.load('x_val_std.npy')[:10]
-y_val = np.load('y_val.npy')[:10]
 
-y_pred = model.predict(x_val)
-pprint(y_pred)
-print('*' * 50)
-pprint(y_val)
+pos = Path('~/dataset/video01')
+x_val = sorted((pos / 'frames/').iterdir())
+y_val = json.load((pos / 'info').open())
+
+res = model.evaluate(x_val, y_val)
+print(res)
