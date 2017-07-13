@@ -12,10 +12,10 @@ keys = ['loss', 'val_loss']
 ax = df[keys].plot(kind='line')
 ax.set_xlabel('epoch')
 ax.set_ylabel('loss(binary crossentropy)')
-plt.savefig('loss.png')
+plt.savefig('loss.svg')
 
 keys = ['binary_accuracy', 'val_binary_accuracy']
 ax = df[keys].plot(kind='line')
 ax.set_xlabel('epoch')
 ax.set_ylabel('accuracy')
-plt.savefig('acc.png')
+plt.savefig('acc.svg')
